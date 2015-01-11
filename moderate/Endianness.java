@@ -1,3 +1,5 @@
+package moderate;
+
 import java.nio.*;
 public class Endianness {
 

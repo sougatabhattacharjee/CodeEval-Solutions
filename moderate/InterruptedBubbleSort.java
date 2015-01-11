@@ -1,3 +1,5 @@
+package moderate;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -5,7 +7,7 @@ import java.math.BigInteger;
 /*
  * https://www.codeeval.com/open_challenges/158/
  */
-public class BubbleSort {
+public class InterruptedBubbleSort {
 
 	public static String[] BubbleSort(String a[],BigInteger count)
 	{

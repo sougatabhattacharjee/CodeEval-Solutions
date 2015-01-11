@@ -1,66 +1,34 @@
 package easy;
 
-
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Iterator;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-public class Json {
-
-	private static final String filePath = "H:\\input.txt";
-	
-	public static void main(String[] args) {
-
-		try {
-			// read the json file
-			FileReader reader = new FileReader(filePath);
-
-			JSONParser jsonParser = new JSONParser();
-			JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
-
-			// get a String from the JSON object
-			String firstName = (String) jsonObject.get("firstname");
-			System.out.println("The first name is: " + firstName);
-
-			// get a number from the JSON object
-			long id =  (Long) jsonObject.get("id");
-			System.out.println("The id is: " + id);
-
-			// get an array from the JSON object
-			JSONArray lang= (JSONArray) jsonObject.get("languages");
-			
-			// take the elements of the json array
-			for(int i=0; i<lang.size(); i++){
-				System.out.println("The " + i + " element of the array: "+lang.get(i));
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+/**
+ * JSON Menu IDs problem.
+ *
+ * If I were solving this in real life I'd use a JSON parser library. But for the purposes of this problem, I'm just
+ * going to find the ID tags and extract those individually. Rolling an entire JSON parse myself seems like a bit much.
+ */
+public class Json
+{
+	public static void main (String[] args)
+			throws IOException
+			{
+		File file = new File(args[0]);
+		BufferedReader in = new BufferedReader(new FileReader(file));
+		String line;
+		while ((line = in.readLine()) != null) {
+			line = line.trim();
+			if (line.length() == 0) {
+				continue;
 			}
-			Iterator i = lang.iterator();
-
-			// take each value from the json array separately
-			while (i.hasNext()) {
-				JSONObject innerObj = (JSONObject) i.next();
-				System.out.println("language "+ innerObj.get("lang") + 
-						" with level " + innerObj.get("knowledge"));
+			int sum = 0;
+			Pattern p = Pattern.compile("\"id\": (\\d+), \"label\"");
+			Matcher m = p.matcher(line);
+			while (m.find()) {
+				sum += Integer.parseInt(m.group(1));
 			}
-			// handle a structure into the json object
-			JSONObject structure = (JSONObject) jsonObject.get("job");
-			System.out.println("Into job structure, name: " + structure.get("name"));
-
-		} catch (FileNotFoundException ex) {
-			ex.printStackTrace();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} catch (ParseException ex) {
-			ex.printStackTrace();
-		} catch (NullPointerException ex) {
-			ex.printStackTrace();
+			System.out.println(sum);
 		}
-
-	}
-
+			}
 }
