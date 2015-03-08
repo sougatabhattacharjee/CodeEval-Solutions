@@ -52,13 +52,13 @@ public class PalindromicRanges {
                 int interest = 0;
                 for (int i = L; i <= R; i++) {
                     for (int j = i; j <= R; j++) {
-                        int numP = 0;
+                        int count = 0;
                         for (int k = i; k <= j; k++) {
                             if (isPalindrome(k)) {
-                                numP++;
+                                count++;
                             }
                         }
-                        if (numP % 2 == 0)
+                        if (count % 2 == 0)
                             interest++;
                     }
                 }
