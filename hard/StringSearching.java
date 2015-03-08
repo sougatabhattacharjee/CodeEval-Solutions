@@ -1,3 +1,5 @@
+package hard;
+
 import java.io.File;
 import java.util.Scanner;
 /**
@@ -11,7 +13,7 @@ import java.util.Scanner;
  * specific location.
  * The worst cast complexity of this solution is less than O(M*N)
  */
-public class substring {
+public class StringSearching {
 	public static String solve(String source, String target) {
 		boolean result = searchString(source, target);
 		return result ? "true" : "false";

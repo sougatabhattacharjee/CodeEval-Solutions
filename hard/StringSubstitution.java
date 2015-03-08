@@ -105,10 +105,10 @@ class StringSubstitution1 {
 	}
 	public static void main(String[] args) {
 		Path path = FileSystems.getDefault().getPath(args[0]);
-		try (
+		try {
 				BufferedReader br = Files.newBufferedReader(path,
 						StandardCharsets.US_ASCII);
-				) {
+
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] elems = line.split(";");
