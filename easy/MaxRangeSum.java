@@ -20,6 +20,24 @@ public class MaxRangeSum {
          * https://www.codeeval.com/open_challenges/186/
          */
 
+        public static int palindromeCount(int start, int finish) {
+            int k = start;
+            int returnVal = 0;
+            while (k <= finish) { // Changed to <= to consider "finish" too
+                int temp = k;
+                int r = 0;
+                while (temp > 0) {
+                    r = 10 * r + temp % 10;
+                    temp = temp / 10;
+                }
+                if (r == k) {
+                    returnVal++;
+                }
+                k++;
+            }
+            return returnVal;
+        }
+
 
         public static void main(String[] args) {
             // TODO Auto-generated method stub
@@ -58,6 +76,8 @@ public class MaxRangeSum {
 
 
                     System.out.println(result[result.length-1]>0?result[result.length-1]:0);
+
+                    System.out.println(">>>>>>>"+palindromeCount(1,7));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
